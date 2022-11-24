@@ -55,4 +55,5 @@ def adapt_bin(img_to_bin, dest):
 ![plot](./take_the_frog.jpg)
 
 Результат работы нативной реализации:
+
 ![plot](./result.jpg)
