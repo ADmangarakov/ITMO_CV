@@ -5,8 +5,8 @@ import matplotlib.patches as patches
 import cv2
 from skimage.metrics import structural_similarity as ssim
 
-IMG_NAME ="img/cup.jpg"
-SUB_IMG_NAME = "img/small_cup.jpg"
+IMG_NAME = "img/take_the_frog.jpg"
+SUB_IMG_NAME = "img/take_the_frog_head.jpg"
 
 
 def find_window(full_img, sub_img):
@@ -21,13 +21,15 @@ def find_window(full_img, sub_img):
         winH = 0
         while winH < full_h - sub_h:
             window = full_img[winW:winW + sub_w, winH:winH + sub_h]
-            if ssim(sub_img, window) > 0.80:
+            if ssim(sub_img, window) > 0.50:
                 found = True
                 print("found", ssim(sub_img, window))
                 win_pos = (winH, winW)
                 break
             winH += 1
         winW += 1
+    if (found == False):
+        print('Not found')
     return win_pos
 
 
@@ -37,11 +39,14 @@ fig, ax = plt.subplots()
 
 ax.imshow(img.imread(IMG_NAME))
 win_pos = find_window(full_image, sub_image)
+print(win_pos)
 sub_w, sub_h = sub_image.shape[:2]
 # Create a Rectangle patch
 rect = patches.Rectangle(win_pos, sub_h, sub_w, linewidth=1, edgecolor='r', facecolor='none')
 
 # Add the patch to the Axes
 ax.add_patch(rect)
-
+# cv2.imwrite('result3.jpg', rect)
 plt.show()
+
+# %%

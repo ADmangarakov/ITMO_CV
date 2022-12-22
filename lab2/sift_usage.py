@@ -4,8 +4,8 @@ import SIFT
 from matplotlib import pyplot as plt
 import logging
 
-BASE_IMG = 'img/cup2.jpg'
-SUB_IMG_NAME = 'img/cup.jpg'
+BASE_IMG = 'img/take_the_frog.jpg'
+SUB_IMG_NAME = 'img/take_the_frog_head.jpg'
 
 logger = logging.getLogger(__name__)
 
@@ -61,6 +61,6 @@ if len(good) > MIN_MATCH_COUNT:
 
     plt.imshow(newimg)
     plt.show()
-    cv2.imwrite('result.jpg', newimg)
+    cv2.imwrite('result5.jpg', newimg)
 else:
     print("Not enough matches are found - %d/%d" % (len(good), MIN_MATCH_COUNT))
